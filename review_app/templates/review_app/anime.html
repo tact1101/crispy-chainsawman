@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Anime</title>
+    </head>
+    <body>
+        {% if titles %}
+            {% for title in titles %}
+                <div class="title">
+                    <img src="{{ title.image.url }}">
+                    <h2><a href="">{{ title.title }}</a></h2>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No titles found.</p>
+        {% endif %}
+    </body>
+</html>
