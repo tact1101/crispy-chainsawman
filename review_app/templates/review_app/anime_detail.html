@@ -1,0 +1,33 @@
+{% extends 'review_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <img src="{{ title.image.url }}">
+        <h2>{{ title.title }}</h2>
+        <p>{{ title.description }}</p>
+        <time>{{ title.published_date }}</time>
+        <hr>
+        <h2>Comment Section</h2>
+        <a class="btn btn-default" href="{% url 'add_comment' pk=title.pk %}">Add comment</a>
+        {% for comment in title.comments.all %}
+            {% if user.is_authenticated or comment.approved_comment %}
+            <div class="comment">
+                <div class="date">{{ comment.created_date }}</div>
+                {% if not comment.approved_comment %}
+                    <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
+                        <img src="{% static 'icons/hand-thumbs-up.svg' %}" alt="thumbs up">
+                    </a> 
+                    <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
+                        <img src="{% static 'icons/hand-thumbs-down.svg' %}" alt="thumbs down">
+                    </a>
+                {% endif %}
+                <strong>{{ comment.author }}</strong>
+                <p>{{ comment.text|linebreaks }}</p>
+            </div>
+            {% endif %}
+        {% empty %}
+            <p>No comments here yet :(</p>
+        {% endfor %}
+    </div>
+{% endblock %}

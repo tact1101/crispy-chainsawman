@@ -1,0 +1,14 @@
+{% extends 'review_app/base.html' %}
+{% load static %}
+
+{% block content%}
+    <div class="container">
+        <h1>Leave a comment</h1>
+        <div class="comment">
+            <form method="post" class="comment-form">{% csrf_token %}
+                {{ form.as_p }} 
+                <button type="submit" class="save btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

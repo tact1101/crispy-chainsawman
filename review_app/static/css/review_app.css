@@ -45,19 +45,37 @@ h1, h2, h3, h4, h5, h6 {
 
 .title {
     width: calc(20% - 20px); /* Set width to 20% with spacing between elements */
-    margin-bottom: 20px; /* Adjust margin as needed */
     box-sizing: border-box; /* Include padding and border in the width calculation */
     background-color: #060a5def; /* Background color for the card */
-    padding: 20px 20px 30px; /* Add padding to create space between content and edges of the card */
     border-radius: 8px; /* Add border radius for rounded corners */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    text-align: center; /* Center text content */
+    align-items: center;
+    height: 340px;
 }
 
 .title img {
-    max-width: 100%; /* Set maximum width to ensure the image fits within its container */
-    height: auto; /* Maintain aspect ratio */
+    width: 150px; /* Set the width to desired size */
+    height: 250px; /* Set the height to desired size */
+    display: block; /* Ensure proper alignment */
+    max-width: 100%; /* Ensure images don't exceed their container width */
+    margin-bottom: 10px; /* Add space between the image and text */
+    align-self: center;
+    padding-bottom: 20px;
 }
 
 .title h2 {
-    padding-top: 50px;
-    text-align: center;
+    margin-top: 0; /* Reset margin */
+    margin-bottom: 10px; /* Adjust margin as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-self: center;
 }
+
+.comment {
+    margin: 20px 0px 20px 20px;
+}
+
