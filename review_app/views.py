@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .models import Title, Comment
-from .forms import CommentForm
+from .models import Title, Comment, CustomUser
+from .forms import CommentForm, CustomUserCreationForm, UserAuthForm
+from django.contrib.auth import login, logout, authenticate
 
 def anime(request):
     titles = Title.objects.order_by('title')
@@ -31,7 +32,6 @@ def comment_approve(request, pk):
     comment.approve()
     return redirect('anime_detail', pk=comment.title.pk)
 
-
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     try:
@@ -40,3 +40,50 @@ def comment_remove(request, pk):
     except Comment.DoesNotExist:
         # Handle the case where the comment does not exist
         return render(request, 'review_app/comment_not_found.html')
+
+from django.contrib.auth import login
+
+def sign_up(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST, request.FILES)
+        if form.is_valid():
+            print("Form is valid!")
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            print(username, "\n", password)
+            user = authenticate(request, username=username, password=password) 
+            if user is not None:
+                login(request, user)
+                print("User created and logged in successfully!")
+                return redirect('anime')
+            else:
+                print("User authentication failed.")
+        else:
+            print("Form errors:", form.errors)
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'review_app/sign_up.html', {'form': form})
+
+            
+def log_in(request):
+    if request.method == 'POST':
+        form = UserAuthForm(request.POST)
+        if form.is_valid():
+            username_or_email = form.cleaned_data['username_or_email']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username_or_email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('anime')
+    else:
+        form = UserAuthForm()
+    return render(request, 'review_app/log_in.html', {'form': form})
+
+def log_out(request):
+    logout(request)
+    return redirect('anime')
+
+def view_profile(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    return render(request, 'review_app/profile.html', {'user': user})

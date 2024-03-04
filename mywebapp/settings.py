@@ -41,6 +41,12 @@ INSTALLED_APPS = [
     'review_app',
 ]
 
+AUTH_USER_MODEL = 'review_app.CustomUser'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -117,7 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 MEDIA_ROOT = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

@@ -1,0 +1,18 @@
+{% extends 'review_app/base.html' %}
+{% load static %}
+
+{% block content%}
+    <div class="container">
+        <h1>Log in</h1>
+        <div class="login">
+            <form method="post" class="login-form">
+                {% csrf_token %}
+                {{ form.username_or_email.label_tag }}
+                {{ form.username_or_email }}
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                <button type="submit" class="save btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -3,10 +3,11 @@
 
 {% block content%}
     <div class="container">
-        <h1>Leave a comment</h1>
-        <div class="comment">
-            <form method="POST" class="comment-form">{% csrf_token %}
-                {{ form.as_p }} 
+        <h1>Sign up</h1>
+        <div class="login">
+            <form method="post" class="signup-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
                 <button type="submit" class="save btn btn-default">Submit</button>
             </form>
         </div>
