@@ -3,12 +3,11 @@
 
 {% block content%}
     <div class="container">
-        <h1>Sign up</h1>
         <div class="login">
             <form method="post" class="signup-form" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="save btn btn-default">Submit</button>
+                <button type="submit" class="save btn btn-default">Sign Up</button>
             </form>
         </div>
     </div>

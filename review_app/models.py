@@ -29,7 +29,11 @@ class Comment(models.Model):
         self.save()      
 
 class CustomUser(AbstractUser):
-    pfp = models.ImageField(upload_to='pfp/', null=False, blank=True) # allowed to have a profile without pfp
+    pfp = models.ImageField(upload_to='pfp/', null=False, blank=True, default='default\lesfrogggg.jpg') # allowed to have a profile without pfp
+    
+    # overriding existing fields from the parent class
+    first_name = models.CharField(max_length=30, blank=True)  # Setting blank=True to allow empty values
+    last_name = models.CharField(max_length=150, blank=True)  # Setting blank=True to allow empty values
     
     # Provide unique related_name for groups and user_permissions fields
     groups = models.ManyToManyField(

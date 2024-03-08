@@ -4,7 +4,11 @@
 {% block content%}
     <div class="container">
         <h1>{{ user.username }}</h1>
-        <img src="{{ user.pfp.url }}">
+        {% if user.pfp.url %}
+            <img src="{{ user.pfp.url }}" class="profile-picture">
+        {% else %}
+            <img src="{% static 'icons/lesfrogggg.jpg' %}" class="pfp">
+        {% endif %}
         <hr>
         <h3>Additional information</h3>
         <p>{{ user.first_name }}</p>
