@@ -3,15 +3,18 @@
 
 {% block content%}
     <div class="container">
-        <h1>Log in</h1>
         <div class="login">
             <form method="post" class="login-form">
                 {% csrf_token %}
-                {{ form.username_or_email.label_tag }}
-                {{ form.username_or_email }}
-                {{ form.password.label_tag }}
-                {{ form.password }}
-                <button type="submit" class="save btn btn-default">Submit</button>
+                <div class="form-group">
+                    <label for="id_username_or_email">Username or Email</label>
+                    {{ form.username_or_email }}
+                </div>
+                <div class="form-group">
+                    <label for="id_password">Password</label>
+                    {{ form.password }}
+                </div>
+                <button type="submit" class="save btn btn-default">Log in</button>
             </form>
         </div>
     </div>

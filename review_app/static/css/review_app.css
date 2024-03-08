@@ -7,12 +7,12 @@
 body {
     font-family: "Roboto-regular", sans-serif;
     height: 100vh;
+    background-color: #000 !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Roboto-Bold", sans-serif;
 }
-
 
 .header-stripe {
     display: flex;
@@ -20,6 +20,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between; /* Distribute items evenly */
     background-color: #000000;
     padding: 20px;
+    border-bottom: 1px solid #fff;
 }
 
 .action-link {
@@ -71,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 1200px;
     width: 100%;
     padding: 20px;
-    background-color: rgb(2, 12, 60);
+    background-color: rgb(0, 0, 0);
     color: white;
 }
 
@@ -187,3 +188,35 @@ h1, h2, h3, h4, h5, h6 {
     margin: 20px auto;
 }
 
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
