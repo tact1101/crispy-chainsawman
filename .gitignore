@@ -12,8 +12,8 @@ __pycache__/
 .vscode/
 .idea/
 # media
-media/images
-mdeia/pfp
+media/images/
+media/pfp/
 
 # not to forget
 login.txt
