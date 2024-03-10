@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-1(47-m7**vobg8ldr$k97#w(&l^+gyk*3g0cug^&&9b-+_klfj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['your_domain.com', 'tact1101.pythonanywhere.com']
 
 
 # Application definition
@@ -123,6 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+STATIC_ROOT = '/home/tact1101/tact1101.pythonanywhere.com/static/'
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
