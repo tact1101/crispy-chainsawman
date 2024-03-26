@@ -5,9 +5,13 @@
     <div class="container">
         <h1>Leave a comment</h1>
         <div class="comment">
+            <h3>{{ user.username }}</h3>
             <form method="POST" class="comment-form">{% csrf_token %}
-                {{ form.as_p }} 
-                <button type="submit" class="save btn btn-default">Submit</button>
+                <div class="form-group">
+                    <label for="id_text"></label>
+                    {{ form.text }}
+                </div>
+                <button type="submit" class="save btn btn-default">Send</button>
             </form>
         </div>
     </div>

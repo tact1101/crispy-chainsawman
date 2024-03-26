@@ -1,0 +1,21 @@
+{% extends 'review_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1>Edit Profile</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="file">Pfp:</label>
+                {{ form.pfp }}
+            </div>
+    
+            <div class="form-group">
+                <label for="email">Email:</label>
+                {{ form.email }}
+            </div>
+            <button type="submit" class="save btn btn-default">Confirm changes</button>
+        </form>
+    </div>
+{% endblock %}

@@ -16,11 +16,21 @@ h1, h2, h3, h4, h5, h6 {
 
 .header-stripe {
     display: flex;
+    width: 100%;
     align-items: center; /* Vertically center align items */
     justify-content: space-between; /* Distribute items evenly */
     background-color: #000000;
-    padding: 20px;
     border-bottom: 1px solid #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 120px;
+}
+
+.header-content {
+    max-width: 1200px; 
+    width: 100%; 
 }
 
 .action-link {
@@ -52,8 +62,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-name {
-    margin: 0; /* Remove default margin */
-    font-size: 24px; /* Adjust font size as needed */
+    margin: 0; 
+    font-size: 26px;
     font-family: "Roboto-medium-italic";
     color: white;
 }
@@ -64,7 +74,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main-container {
-    margin: 20px auto;
+    margin: 120px auto 120px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -79,18 +89,22 @@ h1, h2, h3, h4, h5, h6 {
 .title {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Align items along the cross axis (vertically) */
-    justify-content: center; /* Center items along the main axis (horizontally) */
-    text-align: center; /* Align text in the center */
-    width: 25%; /* Set the width of each title element */
-    flex-basis: 25%; /* Basis for distributing space along the main axis */
-    padding: 10px; /* Add padding for spacing */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    align-items: center; 
+    justify-content: center;
+    text-align: center; 
+    width: 25%; 
+    flex-basis: 25%; 
+    padding: 10px; 
+    box-sizing: border-box; 
+}
+
+.title:first-child {
+    padding-left: 0;
 }
 
 .title img {
-    width: 180px; /* Set the width of the image to 100% */
-    height: 250px; /* Set the height of the image to 100% */
+    width: 180px; 
+    height: 250px; 
     object-fit: cover; /* Maintain aspect ratio and cover the entire space */
 }
 
@@ -129,12 +143,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .profile-picture-preview {
-    border-radius: 30px; /* Border radius for a circular shape */
-    border: 2.5px solid white; /* Border with white color and 2px width */
     width: 65px; /* Adjust the width and height as needed */
     height: 65px;
-    object-fit: cover;
+    border-radius: 50%; /* Border radius for a circular shape */
+    overflow: hidden; /* Ensure the image is clipped to the container */
+    border: 2.5px solid white; /* Border with white color and 2px width */
     transition: border-color 0.3s ease; 
+}
+
+.profile-picture-preview img {
+    width: 100%; /* Ensure the image fills the container */
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio while covering the container */
+}
+
+.btn {
+    color: white !important;
+}
+
+.btn-default {
+    color: #fff; /* Change the text color */
+    border: 2px solid #fff !important; /* Add a white border */
+}
+
+.btn-default:hover {
+    background-color: #0056b3; /* Darken the background color on hover */
 }
 
 .btn.save {
@@ -166,20 +199,6 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #ffffff; /* Change the background color on hover */
 }
 
-.btn {
-    color: white;
-}
-
-.btn-default {
-    background-color: #007bff; /* Change the background color */
-    color: #fff; /* Change the text color */
-    border: 2px solid #fff; /* Add a white border */
-}
-
-.btn-default:hover {
-    background-color: #0056b3; /* Darken the background color on hover */
-}
-
 .anime-detail-image, .profile-picture{
     max-width: 500px;
     width: 500px;
@@ -187,7 +206,6 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: cover;
     margin: 20px auto;
 }
-
 
 .container {
     width: 100%;
@@ -213,10 +231,20 @@ label {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"], 
+input[type="file"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+}
+
+a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

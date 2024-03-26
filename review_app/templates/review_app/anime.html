@@ -4,10 +4,12 @@
 {% block content %}
             {% if titles %}
                 {% for title in titles %}
+                <a href="{% url 'anime_detail' pk=title.pk %}" title="{{ title.title }}">
                     <div class="title">
                         <img src="{{ title.image.url }}">
                         <h4><a href="{% url 'anime_detail' pk=title.pk %}" title="{{ title.title }}">{{ title.title }}</a></h4>
                     </div>
+                </a>
                 {% endfor %}
             {% else %}
                 <p>No titles found.</p>

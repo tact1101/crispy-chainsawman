@@ -3,11 +3,10 @@ from .models import Comment, CustomUser
 from django.contrib.auth.forms import UserCreationForm, authenticate
 
 
-
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['author', 'text'] 
+        fields = ['text'] 
         
     def clean_text(self):
         text = self.cleaned_data.get('text')
@@ -30,6 +29,10 @@ class CustomUserCreationForm(UserCreationForm):
             'password1': forms.PasswordInput(),
             'password2': forms.PasswordInput(),
         }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['pfp'].initial = 'default/lesfrogggg.jpg'
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -59,6 +62,12 @@ class UserAuthForm(forms.Form):
                 raise forms.ValidationError("Invalid username/email or password.")
             
         return cleaned_data
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['pfp', 'email']
         
     
     

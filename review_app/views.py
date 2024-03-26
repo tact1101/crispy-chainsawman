@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Title, Comment, CustomUser
-from .forms import CommentForm, CustomUserCreationForm, UserAuthForm
+from .forms import CommentForm, CustomUserCreationForm, UserAuthForm, UserProfileForm
 from django.contrib.auth import login, logout, authenticate
 
 def anime(request):
@@ -12,17 +12,19 @@ def anime_detail(request, pk):
     return render(request, 'review_app/anime_detail.html', {'title': title})
 
 def add_comment(request, pk):
-    title = get_object_or_404(Title, pk=pk)
+    user = get_object_or_404(CustomUser, username=request.user.username)
+    title = get_object_or_404(Title, pk=pk) 
     if request.method == 'POST':
-        form = CommentForm(request.POST)
+        form = CommentForm(request.POST) # pass the user which requested this form
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.title = title
+            comment.title = title  
+            comment.author = user 
             comment.save()
             return redirect('anime_detail', pk=title.pk)
     else:
         form = CommentForm()
-    return render(request, 'review_app/add_comment.html', {'form': form})
+    return render(request, 'review_app/add_comment.html', {'form': form, 'user': user})
 
 def comment_not_found(request):
     return render(request, 'review_app/comment_not_found.html')
@@ -65,7 +67,6 @@ def sign_up(request):
         form = CustomUserCreationForm()
     return render(request, 'review_app/sign_up.html', {'form': form})
 
-            
 def log_in(request):
     if request.method == 'POST':
         form = UserAuthForm(request.POST)
@@ -87,3 +88,15 @@ def log_out(request):
 def view_profile(request, username):
     user = get_object_or_404(CustomUser, username=username)
     return render(request, 'review_app/profile.html', {'user': user})
+
+def edit_profile(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=user)  
+        if form.is_valid():
+            form.save()
+            return redirect('view_profile', username=username)
+    else:
+        form = UserProfileForm(instance=user)
+    return render(request, 'review_app/edit_profile.html', {'user': user, 'form': form})
+    

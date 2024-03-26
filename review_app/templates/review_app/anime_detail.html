@@ -14,16 +14,21 @@
             {% if user.is_authenticated or comment.approved_comment %}
             <div class="comment">
                 <div class="date">{{ comment.created_date }}</div>
-                {% if not comment.approved_comment %}
-                    <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
-                        <img src="{% static 'icons/hand-thumbs-up.svg' %}" alt="thumbs up">
-                    </a> 
-                    <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
-                        <img src="{% static 'icons/hand-thumbs-down.svg' %}" alt="thumbs down">
-                    </a>
+                {% if user.is_superuser %}
+                    {% if not comment.approved_comment %}
+                        <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
+                            Approve
+                        </a> 
+                        <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
+                            Remove
+                        </a>
+                    {% endif %}
                 {% endif %}
-                <strong>{{ comment.author }}</strong>
+                <hr>
+                <img src="{{ comment.author.pfp.url }}" alt="Profile Picture" class="profile-picture-preview">
+                <strong>{{ comment.author.username }}</strong>
                 <p>{{ comment.text|linebreaks }}</p>
+                <hr>
             </div>
             {% endif %}
         {% empty %}

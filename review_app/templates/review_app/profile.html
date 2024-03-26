@@ -14,5 +14,6 @@
         <p>{{ user.first_name }}</p>
         <p>{{ user.last_name }}</p>
         <p>{{ user.email }}</p>
+        <a class="btn btn-default" href="{% url 'edit_profile' username=user.username %}">Edit Profile</a>
     </div>
 {% endblock %}
